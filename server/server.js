@@ -19,11 +19,20 @@ app.use((req, res, next) => {
     next();
   });
  
+// const db = mysql.createPool({
+//   host: process.env.DB_HOST || 'localhost',
+//   user: process.env.DB_USER || 'root',
+//   password: process.env.DB_PASSWORD || 'root',
+//   database: process.env.DB_NAME || 'glasstrack_db', 
+//   waitForConnections: true,
+//   connectionLimit: 10, // Maxim 10 conexiuni simultane
+//   queueLimit: 0
+// });
 const db = mysql.createPool({
-  host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || 'root',
-  database: process.env.DB_NAME || 'glasstrack_db',
+  host: process.env.DB_HOST || 'sql.freedb.tech',
+  user: process.env.DB_USER || 'freedb_administratorRoot',
+  password: process.env.DB_PASSWORD || 'TePDzZFgPsKq*8x',
+  database: process.env.DB_NAME || 'freedb_glasstrack_db',
   waitForConnections: true,
   connectionLimit: 10, // Maxim 10 conexiuni simultane
   queueLimit: 0
