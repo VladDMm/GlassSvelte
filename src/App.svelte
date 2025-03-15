@@ -213,13 +213,6 @@ onMount(() => {
     expanded = { ...expanded, [id]: !expanded[id] };
   }
 
-//   function handleSearch() {
-//   clearTimeout(searchTimeout);
-//   searchTimeout = setTimeout(() => {
-//     produse = JSON.parse(localStorage.getItem("produse") || "[]")
-//       .filter(produs => produs.a_marca_model.toLowerCase().includes(searchTerm.toLowerCase()));
-//   }, 300);
-// }
 
 function handleSearch() {
     clearTimeout(searchTimeout);
@@ -271,23 +264,6 @@ function handleSearch() {
           </div>
         {/if}
       </li>
-
-      <!-- <li class:expanded={expanded[produs.pa_id]}>
-        <button 
-          on:click={() => toggleExpand(produs.pa_id)}
-        >
-          <strong>{produs.a_marca_model}</strong> - {produs.cod}
-        </button>
-      
-        {#if expanded[produs.pa_id]}
-          <div class="extra-info">
-            <p>Celula: {produs.nume_celula}</p>
-            <p>Stoc: {produs.p_count}</p>
-            <p>Preț: {produs.p_price} MDL</p>
-            <p>{produs.is_updated}</p>
-          </div>
-        {/if}
-      </li> -->
       
     {/each}
   </ul>

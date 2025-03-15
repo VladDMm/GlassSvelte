@@ -35,8 +35,21 @@ const db = mysql.createPool({
   database: process.env.DB_NAME || 'freedb_glasstrack_db',
   waitForConnections: true,
   connectionLimit: 10, // Maxim 10 conexiuni simultane
-  queueLimit: 0
+  queueLimit: 0,
+  charset: 'cp1251' // 🔥 Asigură codificarea corectă
 });
+
+// 🔹 GET - Obține timestamp-ul ultimei actualizări
+// app.get('/api/products/last-update', async (req, res) => {
+//   try {
+//     const [results] = await db.execute('SELECT MAX(updated_at) as last_update FROM product_auto_table');
+//     const lastUpdate = results[0]?.last_update || new Date().toISOString();
+//     res.json({ timestamp: new Date(lastUpdate).getTime() });
+//   } catch (err) {
+//     console.error('Eroare SQL:', err);
+//     res.status(500).json({ error: 'Eroare internă' });
+//   }
+// });
 
 // 🔹 GET - Obține timestamp-ul ultimei actualizări
 app.get('/api/products/last-update', async (req, res) => {
@@ -49,7 +62,6 @@ app.get('/api/products/last-update', async (req, res) => {
     res.status(500).json({ error: 'Eroare internă' });
   }
 });
-
 
 
 // 🔹 GET - Obține toate produsele sau caută după termen
@@ -67,6 +79,7 @@ app.get('/api/products', async (req, res) => {
 
   try {
     const [results] = await db.execute(sql, [search, search, search]);
+    res.setHeader('Content-Type', 'application/json; charset=cp1251');
     res.json(results);
   } catch (err) {
     console.error('Eroare SQL:', err);
